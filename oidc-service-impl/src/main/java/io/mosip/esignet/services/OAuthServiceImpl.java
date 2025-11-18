@@ -182,6 +182,7 @@ public class OAuthServiceImpl implements OAuthService {
         if(StringUtils.hasText(tokenRequest.getClient_id()) && !transaction.getClientId().equals(tokenRequest.getClient_id()))
             throw new InvalidRequestException(ErrorConstants.INVALID_CLIENT_ID);
 
+        log.info("token redirect uri expected: " + transaction.getRedirectUri() + " ,actual: " + tokenRequest.getRedirect_uri());
         if(!transaction.getRedirectUri().equals(tokenRequest.getRedirect_uri()))
             throw new InvalidRequestException(ErrorConstants.INVALID_REDIRECT_URI);
 
