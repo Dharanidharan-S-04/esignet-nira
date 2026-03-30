@@ -294,7 +294,7 @@ export default function OtpVerify({
               isRequired={field.isRequired}
               placeholder={t1(field.placeholder)}
               customClass={inputCustomClass}
-              imgPath="images/photo_scan.png"
+              // imgPath="images/photo_scan.png"
               disabled={true}
               tooltipMsg="vid_info"
               prefix={field.prefix}
