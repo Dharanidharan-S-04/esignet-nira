@@ -123,6 +123,7 @@ export default function NavHeader({ langOptions, i18nKeyPrefix = "header" }) {
         <div className="ltr:sm:ml-8 rtl:sm:mr-8 ltr:ml-1 rtl:mr-1">
           <img className="brand-logo" alt="brand_logo" />
         </div>
+  {/* 
         <div className="flex rtl:sm:ml-8 ltr:sm:mr-8 rtl:ml-1 ltr:mr-1">
           <div className="mx-2 rtl:scale-x-[-1]">
             <svg
@@ -223,7 +224,7 @@ export default function NavHeader({ langOptions, i18nKeyPrefix = "header" }) {
             </DropdownMenu.Portal>
           </DropdownMenu.Root>
         }
-        </div>
+        </div> */}
       </div>
     </nav>
   );
