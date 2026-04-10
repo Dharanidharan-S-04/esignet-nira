@@ -212,7 +212,12 @@ export default function Consent({
       setClientMultiLang(langConfig);
       setClientLogoPath(oAuthDetails?.logoUrl);
 
-      setClaims(oAuthDetails?.essentialClaims);
+      setClaims([
+        ...(oAuthDetails?.essentialClaims || []),
+        ...(oAuthDetails?.voluntaryClaims || [])
+      ]);
+
+      setScope(oAuthDetails?.authorizeScopes || []);
     };
     if (firstRender.current) {
       firstRender.current = false;
