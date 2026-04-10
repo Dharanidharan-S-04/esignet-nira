@@ -187,7 +187,7 @@ export default function Consent({
       claimsScopes.push({
         label: "authorize_scope",
         type: "scope",
-        required: false,
+        required: true,
         values: oAuthDetails?.authorizeScopes,
         tooltip: "authorize_scope_tooltip",
       });
@@ -203,7 +203,7 @@ export default function Consent({
       claimsScopes.push({
         label: "voluntary_claims",
         type: "claim",
-        required: false,
+        required: true,
         values: oAuthDetails?.voluntaryClaims,
         tooltip: "voluntary_claims_tooltip",
       });
