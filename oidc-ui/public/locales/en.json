@@ -12,8 +12,11 @@
     "allow": "Allow",
     "continue": "Continue",
     "resident-service": "Resident Service",
-    "name": "Name",
-    "given_name": "Name",
+    "name": "Full Name",
+    "given_name": "Given Name",
+    "nin": "NIN/AIN",
+    "surname": "Surname",
+    "other_names": "Other Names",
     "middle_name": "Middle Name",
     "preferred_username": "Preferred User Name",
     "picture": "Picture",
@@ -29,19 +32,20 @@
     "email_verified": "Email Address",
     "phone": "Phone",
     "phone_number": "Phone Number",
-    "phone_number_verified": "Phone Number",
+    "phone_number_verified": "Phone Number Verified",
+    "registration_type": "Registration Type",
     "required": "Required",
     "profile": "Profile",
     "authorize_scope_tooltip": "Allows Service provider to access these protected services on your behalf",
     "essential_claims_tooltip": "Mandatory user information required by the Service provider",
-    "voluntary_claims_tooltip": "Additional user information you can choose to share with the Service Provider",
+    "voluntary_claims_tooltip": "Additional user information that the resident can choose to share with the Service provider",
     "logo_alt": "eSignet",
     "Manage-Identity-Data": "Allow access to manage identity data",
     "Manage-VID": "Allow access to manage VID",
     "Manage-Authentication": "Allow access to manage Authentication",
     "Manage-Service-Requests": "Allow access to manage Service Requests",
     "Manage-Credentials": "Allow access to manage Credentials",
-    "individual_id": "UIN/VID used in login",
+    "individual_id": "NIN/AIN used in login",
     "cancelpopup": {
       "confirm_header": "Please confirm",
       "confirm_text": "Are you sure you want to discontinue the login process?",
@@ -53,8 +57,8 @@
     "scan_and_verify": "Scan and Verify",
     "sign_in_with_biometric": "Login with Biometric",
     "retry": "Retry",
-    "vid_label_text": "UIN/VID",
-    "vid_placeholder": "Enter Your UIN or VID",
+    "vid_label_text": "Enter Your NIN/AIN",
+    "vid_placeholder": "NIN/AIN",
     "Face": "Face",
     "Finger": "Finger",
     "Iris": "Iris",
@@ -64,18 +68,18 @@
     "sign_in_with_pin": "Login with PIN",
     "remember_me": "Remember Me",
     "login": "Login",
-    "uin_label_text": "UIN/VID",
+    "uin_label_text": "UIN",
     "pin_label_text": "PIN",
-    "uin_placeholder": "Enter Your UIN or VID",
+    "uin_placeholder": "UIN or VID",
     "pin_placeholder": "Enter PIN"
   },
   "password": {
     "sign_in_with_password": "Login with Password",
     "remember_me": "Remember Me",
-    "login": "Login",
-    "uin_label_text": "UIN/VID",
+    "login": "Continue",
+    "uin_label_text": "Username",
     "password_label_text": "Password",
-    "uin_placeholder": "Enter Your UIN or VID",
+    "uin_placeholder": "Enter 8-9 digit mobile number",
     "password_placeholder": "Enter password",
     "forgot_password": "Forgot Password?",
     "reset_password": "Reset Password"
@@ -87,8 +91,9 @@
     "fullName": "Enter Full Name",
     "dob": "Enter DOB",
     "policyNumber_placeholder": "Policy Number",
-    "fullName_placeholder": "Name",
-    "dob_placeholder": "DOB"
+    "fullName_placeholder": "Full Name",
+    "dob_placeholder": "DOB",
+    "auth_failed": "Login failed, please enter correct credentials"
   },
   "LoginQRCode": {
     "scan_with_wallet": "Scan with {{walletName}} to login",
@@ -105,9 +110,9 @@
     "not_a_robot": "I'm Not a Robot",
     "get_otp": "Get OTP",
     "verify": "Verify",
-    "vid_label_text": "UIN/VID",
+    "vid_label_text": "Enter Your NIN/AIN",
     "otp_label_text": "OTP",
-    "vid_placeholder": "Enter Your UIN or VID",
+    "vid_placeholder": "NIN/AIN",
     "otp_placeholder": "1234",
     "mobile_number": "Mobile Number",
     "email_address": "Email Address",
@@ -126,13 +131,11 @@
     "QRCode": "QR Code",
     "OTP": "OTP",
     "PWD": "Password",
-    "KBA": "Details",
-    "walletName": "Inji",
     "preferred_mode_of_login": "Select a preferred mode of login",
     "more_ways_to_sign_in": "More ways to sign in",
     "or": "OR",
     "sign_in_with": "Verify using {{idProviderName}}",
-    "verify_using_national_id": "Verify using other National IDs",
+    "verify_using_national_id":"Verify using other National IDs",
     "register": "Register"
   },
   "esignetDetails": {
@@ -154,10 +157,10 @@
     "signup_for_unified_login": "Sign Up with Unified Login",
     "subheader_text": {
       "all_login_options": "Please choose the login option",
-      "otp_login": "Please enter your UIN/VID",
-      "biometrics_login": "Please enter your UIN/VID & verify using the Biometric device",
+      "otp_login": "Please enter your NIN/AIN",
+      "biometrics_login": "Please enter your NIN/AIN & verify using the Biometric device",
       "pin_login": "Please enter your UIN/VID and PIN",
-      "password_login": "Please enter your UIN/VID and password",
+      "password_login": "Please enter your registered username and password",
       "kba_login": "Please fill the below details",
       "wallet_login": "Please scan the below QR code to login"
     }
@@ -181,10 +184,7 @@
   },
   "tooltips": {
     "vid_info": "Please fill in this field",
-    "otp_info": "Enter your generated UIN/VID",
-    "bio_info": "Enter your generated UIN/VID",
-    "pin_info": "Enter your generated UIN/VID",
-    "username_info": "Enter your generated UIN/VID"
+    "username_info": "Enter your 8-9 digit registered mobile number and ensure it does not begin with \"0\""
   },
   "errors": {
     "navigate_option": "Please try navigating using the options below.",
@@ -332,7 +332,7 @@
     "109": "Requested Number of Biometric (Finger/Iris) Not Supported",
     "IDA-MLC-002": "Invalid UIN",
     "IDA-MLC-003": "UIN has been deactivated",
-    "IDA-MLC-004": "Invalid VID",
+    "IDA-MLC-004": "Invalid NIN/AIN",
     "IDA-MLC-005": "Invalid ID",
     "IDA-MLC-014": "Notification Channel not registered. Individual has to register and try again",
     "IDA-MLC-006": "Missing Input parameter",
@@ -381,6 +381,7 @@
     "IDA-DPM-004": "Device Type and Biometric Type do not match",
     "IDA-MLC-024": "Domain of request is not matching with Domain of biometrics",
     "IDA-MLC-025": "Partner Certificate is not available",
+    "IDA-MLC-032": "The person has been declared deceased",
     "IDA-MPA-019": "Partner policy is not active",
     "IDA-IDV-001": "Input Data Validation Failed",
     "IDA-RST-001": "URI should not be empty",
@@ -411,7 +412,7 @@
       "send_otp_failed_msg": "Failed to Send OTP",
       "invalid_otp_channel": "Invalid OTP Channel Provided.",
       "auth_failed": "Incorrect OTP. Please try again.",
-      "IDA-MLC-018": "Incorrect OTP. Please try again."
+      "IDA-MLC-018": "Invalid NIN/AIN. Please enter a valid NIN/AIN."
     },
     "biometrics": {
       "IDA-BIA-001": "Biometric data did not match",
@@ -432,12 +433,12 @@
       "IDA-BIA-017": "Unable to Perform Biometric Match due to a Technical Issue",
       "IDA-BIA-018": "Unable to Process the Request due to a Technical Issue",
       "auth_failed": "Biometric data not available. Please try again.",
-      "IDA-MLC-018": "Biometric data not available. Please try again."
+      "IDA-MLC-018": "Invalid NIN/AIN. Please enter a valid NIN/AIN."
     },
     "pin": {
       "invalid_pin": "Invalid Pin",
       "auth_failed": "Incorrect pin. Please try again.",
-      "IDA-MLC-018": "Incorrect pin. Please try again."
+      "IDA-MLC-018": "Invalid NIN/AIN. Please enter a valid NIN/AIN."
     },
     "wallet": {
       "failed_to_link": "Failed to Link",
@@ -445,17 +446,15 @@
       "invalid_qrcode_config": "Invalid QRCode configuration. Please report to the site admin.",
       "link_code_refresh_failed": "Failed to Load",
       "auth_failed": "Wallet local authentication failed. Please try again.",
-      "IDA-MLC-018": "Wallet local authentication failed. Please try again."
+      "IDA-MLC-018": "Invalid NIN/AIN. Please enter a valid NIN/AIN."
     },
     "password": {
       "auth_failed": "Incorrect username or password. Please try again.",
       "password_error_msg": "Invalid Password",
-      "IDA-MLC-018": "Incorrect username or password. Please try again."
-    },
-    "kba": {
-      "auth_failed": "Login failed, please enter correct credentials"
-    },
-    "statusCodeHeader": {
+      "IDA-MLC-018": "Invalid username. Please enter a valid username.",
+      "IDA-PSD-001": "Incorrect username or password. Please try again.",
+      "IDA-PSD-002": "Incorrect username or password. Please try again."
+    },"statusCodeHeader": {
       "400": "Bad Request",
       "401": "Unauthorized",
       "402": "Payment Required",
