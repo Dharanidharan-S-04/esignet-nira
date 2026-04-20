@@ -209,7 +209,7 @@ public class ConsentHelperServiceTest {
         consentHelperService.updateUserConsent(oidcTransaction, "");
         Mockito.verify(consentService).deleteUserConsent(clientId, psuToken);
     }
-
+    
     @Test
     public void processConsent_withWebFlowAndValidConsentAndGetConsentActionAsNoCapture_thenPass() throws Exception {
 

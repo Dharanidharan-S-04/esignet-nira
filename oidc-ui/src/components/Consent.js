@@ -187,7 +187,7 @@ export default function Consent({
       claimsScopes.push({
         label: "authorize_scope",
         type: "scope",
-        required: false,
+        required: true,
         values: oAuthDetails?.authorizeScopes,
         tooltip: "authorize_scope_tooltip",
       });
@@ -203,7 +203,7 @@ export default function Consent({
       claimsScopes.push({
         label: "voluntary_claims",
         type: "claim",
-        required: false,
+        required: true,
         values: oAuthDetails?.voluntaryClaims,
         tooltip: "voluntary_claims_tooltip",
       });
@@ -212,7 +212,12 @@ export default function Consent({
       setClientMultiLang(langConfig);
       setClientLogoPath(oAuthDetails?.logoUrl);
 
-      setClaims(oAuthDetails?.essentialClaims);
+      setClaims([
+        ...(oAuthDetails?.essentialClaims || []),
+        ...(oAuthDetails?.voluntaryClaims || [])
+      ]);
+
+      setScope(oAuthDetails?.authorizeScopes || []);
     };
     if (firstRender.current) {
       firstRender.current = false;
@@ -295,15 +300,15 @@ export default function Consent({
         return;
       }
 
-      let params = "?";
+      const url = new URL(response.redirectUri);
 
       if (response.state) {
-        params = params + "state=" + response.state + "&";
+        url.searchParams.set("state", response.state);
       }
 
-      window.location.replace(
-        response.redirectUri + params + "code=" + response.code
-      );
+      url.searchParams.set("code", response.code);
+
+      window.location.replace(url.toString());
     } catch (error) {
       redirectOnError("authorization_failed_msg", error.message);
     }

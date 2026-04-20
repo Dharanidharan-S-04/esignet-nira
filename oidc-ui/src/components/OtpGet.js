@@ -129,7 +129,7 @@ export default function OtpGet({
       setStatus({ state: states.LOADING, msg: "sending_otp_msg" });
       const sendOtpResponse = await post_SendOtp(
         transactionId,
-        vid,
+        vid.toLowerCase(),
         otpChannels,
         captchaToken
       );
@@ -210,7 +210,7 @@ export default function OtpGet({
             isRequired={field.isRequired}
             placeholder={t1(field.placeholder)}
             customClass={inputCustomClass}
-            imgPath="images/photo_scan.png"
+            // imgPath="images/photo_scan.png"
             tooltipMsg="vid_info"
             prefix={field.prefix}
             errorCode={field.errorCode}

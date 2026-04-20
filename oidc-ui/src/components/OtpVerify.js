@@ -96,7 +96,7 @@ export default function OtpVerify({
       setStatus({ state: states.LOADING, msg: "sending_otp_msg" });
       const sendOtpResponse = await post_SendOtp(
         transactionId,
-        idvid,
+        idvid.toLowerCase(),
         otpChannels
       );
       setStatus({ state: states.LOADED, msg: "" });
@@ -205,7 +205,7 @@ export default function OtpVerify({
       setStatus({ state: states.LOADING, msg: "authenticating_msg" });
       const authenticateResponse = await post_AuthenticateUser(
         transactionId,
-        idvid,
+        idvid.toLowerCase(),
         challengeList
       );
       setStatus({ state: states.LOADED, msg: "" });
@@ -294,7 +294,7 @@ export default function OtpVerify({
               isRequired={field.isRequired}
               placeholder={t1(field.placeholder)}
               customClass={inputCustomClass}
-              imgPath="images/photo_scan.png"
+              // imgPath="images/photo_scan.png"
               disabled={true}
               tooltipMsg="vid_info"
               prefix={field.prefix}

@@ -172,6 +172,7 @@ public class OAuthServiceImpl implements OAuthService {
         if(StringUtils.hasText(tokenRequest.getClient_id()) && !transaction.getClientId().equals(tokenRequest.getClient_id()))
             throw new InvalidRequestException(ErrorConstants.INVALID_CLIENT_ID);
 
+        log.info("token redirect uri expected: " + transaction.getRedirectUri() + " ,actual: " + tokenRequest.getRedirect_uri());
         if(!transaction.getRedirectUri().equals(tokenRequest.getRedirect_uri()))
             throw new InvalidRequestException(ErrorConstants.INVALID_REDIRECT_URI);
 
@@ -250,6 +251,7 @@ public class OAuthServiceImpl implements OAuthService {
             kycExchangeDto.setAcceptedClaims(transaction.getAcceptedClaims());
             kycExchangeDto.setClaimsLocales(transaction.getClaimsLocales());
             kycExchangeDto.setIndividualId(authorizationHelperService.getIndividualId(transaction));
+            log.info("Accepted claims for kyc exchange : {}", kycExchangeDto.getAcceptedClaims());
             kycExchangeResult = authenticationWrapper.doKycExchange(transaction.getRelyingPartyId(),
                     transaction.getClientId(), kycExchangeDto);
         } catch (KycExchangeException e) {

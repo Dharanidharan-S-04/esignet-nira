@@ -1,4 +1,4 @@
-FROM openjdk:11
+FROM eclipse-temurin:11-jre-focal
 
 ARG SOURCE
 ARG COMMIT_HASH
@@ -66,7 +66,7 @@ ENV hsm_local_dir_name=${hsm_local_dir}
 
 # install packages and create user
 RUN apt-get -y update \
-&& apt-get install -y unzip file sudo \
+&& apt-get install -y unzip file sudo libssl1.1 softhsm2 iproute2 \
 && groupadd -g ${container_user_gid} ${container_user_group} \
 && useradd -u ${container_user_uid} -g ${container_user_group} -s /bin/sh -m ${container_user} \
 && adduser ${container_user} sudo \

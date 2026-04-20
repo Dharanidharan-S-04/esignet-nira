@@ -13,7 +13,7 @@ fi
 #installs the pkcs11 libraries.
 set -e
 
-DEFAULT_ZIP_PATH=artifactory/libs-release-local/hsm/client.zip
+DEFAULT_ZIP_PATH=artifactory/libs-release-local/hsm/ida_client.zip
 [ -z "$hsm_zip_file_path" ] && zip_path="$DEFAULT_ZIP_PATH" || zip_path="$hsm_zip_file_path"
 
 echo "Download the client from $artifactory_url_env"
@@ -43,7 +43,14 @@ else
 fi
 
 echo "Attempting to install"
-cd ./$DIR_NAME && chmod +x install.sh && sudo ./install.sh
+pwd
+ls
+cd ./hsm-client
+ls
+chmod +x install.sh 
+ls -ltar
+sed -i 's/\r$//' install.sh
+sudo ./install.sh
 echo "Installation complete"
 cd $work_dir
 
