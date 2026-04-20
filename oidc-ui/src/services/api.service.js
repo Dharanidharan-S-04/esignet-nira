@@ -2,7 +2,7 @@ import axios from "axios";
 
 import { SOMETHING_WENT_WRONG } from "../constants/routes";
 
-const API_BASE_URL =
+export const API_BASE_URL =
   process.env.NODE_ENV === "development"
     ? process.env.REACT_APP_ESIGNET_API_URL
     : window.origin + process.env.REACT_APP_ESIGNET_API_URL;
