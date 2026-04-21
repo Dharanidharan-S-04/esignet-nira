@@ -86,19 +86,8 @@ export default function OtpGet({
     loadComponent();
   }, []);
 
-  const handleCaptchaVerified = async (payload) => {
-    try {
-      // Server-side verification, same as your pre-reg onSubmit()
-      const response = await authService.verifyCaptcha(payload);
-      if (response.success) {
-        setCaptchaToken(payload);
-      } else {
-        setCaptchaToken(null);
-      }
-    } catch (error) {
-      console.error("Captcha verification failed", error);
-      setCaptchaToken(null);
-    }
+  const handleCaptchaVerified = (payload) => {
+    setCaptchaToken(payload);
   };
 
   const handleCaptchaError = () => {
