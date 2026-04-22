@@ -5,6 +5,7 @@ export const AUTHENTICATE_V3 = "/authorization/v3/authenticate";
 export const OAUTH_DETAIL = "/authorization/v2/oauth-details";
 export const AUTHCODE = "/authorization/auth-code";
 export const CSRF = "/csrf/token";
+export const ALTCHA_CHALLENGE = "/altcha/challenge/generate";
 
 // Config endpoint
 export const CONFIG = "/theme/config.json";

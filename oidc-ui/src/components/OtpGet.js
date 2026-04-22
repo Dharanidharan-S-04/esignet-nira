@@ -5,10 +5,13 @@ import { LoadingStates as states } from "../constants/states";
 import { useTranslation } from "react-i18next";
 import InputWithImage from "./InputWithImage";
 import { buttonTypes, configurationKeys } from "../constants/clientConstants";
-import ReCAPTCHA from "react-google-recaptcha";
+//import ReCAPTCHA from "react-google-recaptcha";
+import AltchaCaptcha from "./AltchaCaptcha";
 import ErrorBanner from "../common/ErrorBanner";
 import langConfigService from "../services/langConfigService";
 import redirectOnError from "../helpers/redirectOnError";
+import { API_BASE_URL } from "../services/api.service";
+import { ALTCHA_CHALLENGE } from "../constants/routes";
 
 const langConfig = await langConfigService.getEnLocaleConfiguration();
 
@@ -64,7 +67,8 @@ export default function OtpGet({
   const [inputError, setInputError] = useState(null);
 
   const [captchaToken, setCaptchaToken] = useState(null);
-  const _reCaptchaRef = useRef(null);
+  const _altchaCaptchaRef = useRef(null);
+  const captchaChallengeUrl = `${API_BASE_URL}${ALTCHA_CHALLENGE}`;
 
   useEffect(() => {
     let loadComponent = async () => {
@@ -82,8 +86,12 @@ export default function OtpGet({
     loadComponent();
   }, []);
 
-  const handleCaptchaChange = (value) => {
-    setCaptchaToken(value);
+  const handleCaptchaVerified = (payload) => {
+    setCaptchaToken(payload);
+  };
+
+  const handleCaptchaError = () => {
+    setCaptchaToken(null);
   };
 
   const handleChange = (e) => {
@@ -95,9 +103,9 @@ export default function OtpGet({
    * & its token value
    */
   const resetCaptcha = () => {
-    _reCaptchaRef.current.reset();
+    _altchaCaptchaRef.current?.reset();
     setCaptchaToken(null);
-  }
+  };
 
   const sendOTP = async () => {
     try {
@@ -203,11 +211,11 @@ export default function OtpGet({
 
         {showCaptcha && (
           <div className="flex justify-center mt-5 mb-5">
-            <ReCAPTCHA
-              hl={i18n.language}
-              ref={_reCaptchaRef}
-              onChange={handleCaptchaChange}
-              sitekey={captchaSiteKey}
+            <AltchaCaptcha
+              ref={_altchaCaptchaRef}
+              challengeUrl={captchaChallengeUrl}
+              onVerified={handleCaptchaVerified}
+              onError={handleCaptchaError}
             />
           </div>
         )}
@@ -218,7 +226,11 @@ export default function OtpGet({
             text={t1("get_otp")}
             handleClick={sendOTP}
             id="get_otp"
-            disabled={!loginState["Otp_mosip-vid"]?.trim() || inputError || (showCaptcha && captchaToken === null)}
+            disabled={
+              !loginState["Otp_mosip-vid"]?.trim() ||
+              inputError ||
+              (showCaptcha && captchaToken === null)
+            }
           />
         </div>
 

@@ -16,6 +16,7 @@ on:
     branches:
       - '!release-branch'
       - tf_nira_dev
+      - tf_nira_dev_altcha
 
 jobs:
   build-maven-esignet:
