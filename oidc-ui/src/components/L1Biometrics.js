@@ -79,7 +79,7 @@ export default function L1Biometrics({
       try {
         await Authenticate(
           transactionId,
-          vid.toLowerCase(),
+          vid,
           openIDConnectService.encodeBase64(biometricResponse["biometrics"])
         );
       } catch (error) {
