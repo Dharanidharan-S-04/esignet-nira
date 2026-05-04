@@ -24,6 +24,7 @@ export default function OtpVerify({
   vid,
   authService,
   openIDConnectService,
+  captchaToken,
   i18nKeyPrefix1 = "otp",
   i18nKeyPrefix2 = "errors",
 }) {
@@ -52,6 +53,13 @@ export default function OtpVerify({
     openIDConnectService.getEsignetConfiguration(configurationKeys.otpLength) ??
     process.env.REACT_APP_OTP_LENGTH;
   const otpLength = parseInt(otpLengthValue);
+
+  const captchaEnableComponents =
+    openIDConnectService.getEsignetConfiguration(configurationKeys.captchaEnableComponents) ??
+    process.env.REACT_APP_CAPTCHA_ENABLE;
+  const captchaEnableComponentsList = captchaEnableComponents
+    .split(",")
+    .map((x) => x.trim().toLowerCase());
 
   const [loginState, setLoginState] = useState(fieldsState);
   const [status, setStatus] = useState({ state: states.LOADED, msg: "" });
@@ -97,7 +105,8 @@ export default function OtpVerify({
       const sendOtpResponse = await post_SendOtp(
         transactionId,
         idvid.toLowerCase(),
-        otpChannels
+        otpChannels,
+        captchaToken
       );
       setStatus({ state: states.LOADED, msg: "" });
 

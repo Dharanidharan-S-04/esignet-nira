@@ -151,7 +151,7 @@ export default function OtpGet({
         }
         return;
       } else {
-        onOtpSent(loginState["Otp_mosip-vid"], response);
+        onOtpSent(loginState["Otp_mosip-vid"], response, captchaToken);
         setErrorBanner(null);
       }
     } catch (error) {

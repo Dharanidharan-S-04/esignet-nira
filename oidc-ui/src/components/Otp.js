@@ -20,10 +20,12 @@ export default function Otp({
   const [otpStatus, setOtpStatus] = useState(OTPStatusEnum.getOtp);
   const [otpResponse, setOtpResponse] = useState("");
   const [vid, setVid] = useState("");
+  const [captchaToken, setCaptchaToken] = useState(null);
 
-  const onOtpSent = async (vid, response) => {
+  const onOtpSent = async (vid, response, token) => {
     setOtpResponse(response);
     setVid(vid);
+    setCaptchaToken(token);
     setOtpStatus(OTPStatusEnum.verifyOtp);
   };
 
@@ -61,6 +63,7 @@ export default function Otp({
           vid={vid}
           authService={authService}
           openIDConnectService={openIDConnectService}
+          captchaToken={captchaToken}
         />
       )}
     </>
