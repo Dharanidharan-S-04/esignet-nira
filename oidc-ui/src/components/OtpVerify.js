@@ -15,8 +15,6 @@ import PinInput from "react-pin-input";
 import ErrorBanner from "../common/ErrorBanner";
 import langConfigService from "../services/langConfigService";
 import redirectOnError from "../helpers/redirectOnError";
-import { API_BASE_URL } from "../services/api.service";
-import { ALTCHA_CHALLENGE } from "../constants/routes";
 
 const langConfig = await langConfigService.getEnLocaleConfiguration();
 
@@ -26,6 +24,7 @@ export default function OtpVerify({
   vid,
   authService,
   openIDConnectService,
+  captchaToken,
   i18nKeyPrefix1 = "otp",
   i18nKeyPrefix2 = "errors",
 }) {
@@ -72,14 +71,8 @@ export default function OtpVerify({
   const [otpSentEmail, setOtpSentEmail] = useState("");
   const [otpSentMobile, setOtpSentMobile] = useState("");
   const [errorBanner, setErrorBanner] = useState(null);
-  const [showCaptcha, setShowCaptcha] = useState(
-    captchaEnableComponentsList.indexOf("send-otp") !== -1
-  );
-  const [captchaToken, setCaptchaToken] = useState(null);
 
   let pin = useRef();
-  const _altchaCaptchaRef = useRef(null);
-  const captchaChallengeUrl = `${API_BASE_URL}${ALTCHA_CHALLENGE}`;
 
   const navigate = useNavigate();
 
@@ -95,23 +88,6 @@ export default function OtpVerify({
   const handleSendOtp = (e) => {
     e.preventDefault();
     sendOTP();
-  };
-
-  const handleCaptchaVerified = (payload) => {
-    setCaptchaToken(payload);
-  };
-
-  const handleCaptchaError = () => {
-    setCaptchaToken(null);
-  };
-
-  /**
-   * Reset the captcha widget
-   * & its token value
-   */
-  const resetCaptcha = () => {
-    _altchaCaptchaRef.current?.reset();
-    setCaptchaToken(null);
   };
 
   const sendOTP = async () => {
@@ -155,10 +131,6 @@ export default function OtpVerify({
             show: true
           });
         }
-
-        if (showCaptcha) {
-          resetCaptcha();
-        }
         return;
       } else {
         startTimer();
@@ -172,9 +144,6 @@ export default function OtpVerify({
         show: true
       });
       setStatus({ state: states.ERROR, msg: "" });
-      if (showCaptcha) {
-        resetCaptcha();
-      }
     }
   };
 
