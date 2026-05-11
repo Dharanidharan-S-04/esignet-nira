@@ -63,6 +63,8 @@ export default function L1Biometrics({
   const authTxnIdLength = parseInt(authTxnIdLengthValue);
 
   const handleInputChange = (e) => {
+    console.log("Input ID:", e.target.id);
+    console.log("Entered Value:", e.target.value);
     setLoginState({ ...loginState, [e.target.id]: e.target.value });
   };
 
